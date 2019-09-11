@@ -24,6 +24,8 @@ Webpack has several features that are geared towards better interop with SystemJ
 
 ## Installation
 
+Note that systemjs-webpack-interop requires systemjs@>=6 and webpack@>=4.30.0
+
 ```sh
 npm install --save systemjs-webpack-interop
 

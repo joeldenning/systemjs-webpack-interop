@@ -4,6 +4,7 @@
   "description": "helpers for getting webpack bundles to be loaded by systemjs",
   "main": "src/webpack-config-helpers.js",
   "module": "src/systemjs-webpack-interop.js",
+  "types": "src/systemjs-webpack-interop.d.ts",
   "repository": "https://github.com/joeldenning/systemjs-webpack-interop.git",
   "author": "Joel Denning <joeldenning@gmail.com>",
   "license": "MIT",

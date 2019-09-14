@@ -22,6 +22,14 @@ Webpack has several features that are geared towards better interop with SystemJ
 - https://webpack.js.org/configuration/output/#outputlibrarytarget (search for `libraryTarget: 'system'` on that page)
 - https://webpack.js.org/configuration/module/#ruleparser (search for `SystemJS` on that page)
 
+Pending work that will make this even better:
+
+[This webpack PR](https://github.com/webpack/webpack/pull/9119) will make it so that you won't even have to create a `set-public-path` file. You'll just be able to do the following:
+```js
+// in your webpack entry file
+import 'systemjs-webpack-interop/set-public-path'
+```
+
 ## Installation
 
 Note that systemjs-webpack-interop requires systemjs@>=6 and webpack@>=4.30.0

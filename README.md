@@ -67,12 +67,12 @@ import { setPublicPath } from "systemjs-webpack-interop";
  */
 
 // __webpack_public_path__ will be set to https://example.com/dist/js/
-setPublicPath(System.resolve("foo"));
+setPublicPath(“foo");
 
 // If the URL in the import map has multiple directories in the pathname, you can specify which directory
 // to use by passing in a second argument.
 // __webpack_public_path__ will be set to https://example.com/dist/
-setPublicPath(System.resolve("foo"), 2);
+setPublicPath(“foo", 2);
 ```
 
 #### Arguments

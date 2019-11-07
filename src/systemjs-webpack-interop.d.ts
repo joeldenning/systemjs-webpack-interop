@@ -6,7 +6,9 @@ declare module "systemjs-webpack-interop" {
   export function modifyWebpackConfig(
     webpackConfig: WebpackConfig
   ): WebpackConfig;
-  export function verifyWebpackConfig(webpackConfig): void;
+  export function verifyWebpackConfig(
+    webpackConfig: WebpackConfig
+  ): void;
 
   type WebpackConfig = object | WebpackConfigGetter;
   interface WebpackConfigGetter {

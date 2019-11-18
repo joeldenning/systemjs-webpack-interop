@@ -1,4 +1,7 @@
-export function setPublicPath(systemjsModuleName, rootDirectoryLevel = 1) {
+export function setPublicPath(systemjsModuleName, rootDirectoryLevel) {
+  if (!rootDirectoryLevel) {
+    rootDirectoryLevel = 1;
+  }
   if (
     typeof systemjsModuleName !== "string" ||
     systemjsModuleName.trim().length === 0

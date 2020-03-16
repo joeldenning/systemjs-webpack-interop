@@ -24,11 +24,7 @@ Webpack has several features that are geared towards better interop with SystemJ
 
 Pending work that will make this even better:
 
-[This webpack PR](https://github.com/webpack/webpack/pull/9119) will make it so that you won't even have to create a `set-public-path` file. You'll just be able to do the following:
-```js
-// in your webpack entry file
-import 'systemjs-webpack-interop/set-public-path'
-```
+[This webpack PR](https://github.com/webpack/webpack/pull/9119) will make it so that you won't even have to create a `set-public-path` file. However, it is not merged yet.
 
 ## Installation
 
@@ -93,7 +89,7 @@ setPublicPath("foo", 2);
 
 ```js
 // webpack.config.js
-const systemjsInterop = require("systemjs-webpack-interop");
+const systemjsInterop = require("systemjs-webpack-interop/webpack-config");
 
 // Pass in your webpack config, and systemjs-webpack-interop will make it
 // work better with SystemJS

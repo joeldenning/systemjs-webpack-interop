@@ -2,14 +2,13 @@
   "name": "systemjs-webpack-interop",
   "version": "1.1.2",
   "description": "helpers for getting webpack bundles to be loaded by systemjs",
-  "main": "src/webpack-config-helpers.js",
-  "module": "src/systemjs-webpack-interop.js",
-  "types": "src/systemjs-webpack-interop.d.ts",
+  "main": "public-path.js",
+  "types": "public-path.d.ts",
   "repository": "https://github.com/joeldenning/systemjs-webpack-interop.git",
   "author": "Joel Denning <joeldenning@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "BABEL_ENV=test jest"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
@@ -17,14 +16,11 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "@types/jest": "^24.0.18",
-    "babel-jest": "^24.9.0",
-    "husky": "^3.0.5",
-    "jest": "^24.9.0",
-    "jest-cli": "^24.9.0",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1"
+    "@types/jest": "^25.1.4",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "jest-cli": "^25.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   }
 }

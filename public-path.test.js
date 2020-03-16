@@ -1,4 +1,4 @@
-import { setPublicPath } from "./public-path-system-resolve";
+const { setPublicPath } = require("./public-path.js");
 
 describe("setPublicPath", () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
 const {
   modifyWebpackConfig,
   checkWebpackConfig
-} = require("./webpack-config-helpers");
+} = require("./webpack-config.js");
 
 describe("webpack-config helpers", () => {
   it("modifies an empty webpack config to have the correct systemjs stuff", () => {

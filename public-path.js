@@ -1,4 +1,7 @@
-export function setPublicPath(systemjsModuleName, rootDirectoryLevel) {
+exports.setPublicPath = function setPublicPath(
+  systemjsModuleName,
+  rootDirectoryLevel
+) {
   if (!rootDirectoryLevel) {
     rootDirectoryLevel = 1;
   }
@@ -36,7 +39,7 @@ export function setPublicPath(systemjsModuleName, rootDirectoryLevel) {
   }
 
   __webpack_public_path__ = resolveDirectory(moduleUrl, rootDirectoryLevel);
-}
+};
 
 function resolveDirectory(urlString, rootDirectoryLevel) {
   const url = new URL(urlString);

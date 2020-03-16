@@ -5,6 +5,10 @@
   "main": "public-path.js",
   "types": "public-path.d.ts",
   "repository": "https://github.com/joeldenning/systemjs-webpack-interop.git",
+  "bugs": {
+    "url": "https://github.com/joeldenning/systemjs-webpack-interop/issues"
+  },
+  "homepage": "https://github.com/joeldenning/systemjs-webpack-interop#readme",
   "author": "Joel Denning <joeldenning@gmail.com>",
   "license": "MIT",
   "scripts": {

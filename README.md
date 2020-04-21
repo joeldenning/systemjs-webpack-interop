@@ -22,13 +22,6 @@ Webpack has several features that are geared towards better interop with SystemJ
 - https://webpack.js.org/configuration/output/#outputlibrarytarget (search for `libraryTarget: 'system'` on that page)
 - https://webpack.js.org/configuration/module/#ruleparser (search for `SystemJS` on that page)
 
-<<<<<<< HEAD
-Pending work that will make this even better:
-
-[This webpack PR](https://github.com/webpack/webpack/pull/9119) will make it so that you won't even have to create a `set-public-path` file. However, it is not merged yet.
-
-=======
->>>>>>> Adding auto-public-path, which works in webpack@>=5.0.0-beta.15.
 ## Installation
 
 Note that systemjs-webpack-interop requires systemjs@>=6.
@@ -102,12 +95,6 @@ import { setPublicPath } from "systemjs-webpack-interop";
 
 // __webpack_public_path__ will be set to https://example.com/dist/js/
 setPublicPath("foo");
-<<<<<<< HEAD
-
-// If the URL in the import map has multiple directories in the pathname, you can specify which directory
-// to use by passing in a second argument.
-// __webpack_public_path__ will be set to https://example.com/dist/
-=======
 ```
 
 If you need the webpack public path to "chop off" some of the directories in the current module's url, you can specify a "root directory level". Note that the root directory level is read from right-to-left, with `1` indicating "current directory" and `2` indicating "up one directory":
@@ -117,7 +104,6 @@ If you need the webpack public path to "chop off" some of the directories in the
  * this will set the webpack public path to be
  * http://localhost:8080/dist/
  */
->>>>>>> Adding auto-public-path, which works in webpack@>=5.0.0-beta.15.
 setPublicPath("foo", 2);
 ```
 

@@ -46,7 +46,7 @@ If you're using at least webpack 5.0.0-beta.15, simply add the following **to th
  * this will set the webpack public path to be
  * http://localhost:8080/dist/js/
  */
-import "systemjs-webpack-interop/src/auto-public-path";
+import "systemjs-webpack-interop/auto-public-path";
 ```
 
 If you need the webpack public path to "chop off" some of the directories in the current module's url, you can specify a "root directory level". Note that the root directory level is read from right-to-left, with `1` indicating "current directory" and `2` indicating "up one directory":
@@ -56,7 +56,7 @@ If you need the webpack public path to "chop off" some of the directories in the
  * this will set the webpack public path to be
  * http://localhost:8080/js/
  */
-import "systemjs-webpack-interop/src/auto-public-path/2";
+import "systemjs-webpack-interop/auto-public-path/2";
 ```
 
 ```js
@@ -64,7 +64,7 @@ import "systemjs-webpack-interop/src/auto-public-path/2";
  * this will set the webpack public path to be
  * http://localhost:8080/
  */
-import "systemjs-webpack-interop/src/auto-public-path/3";
+import "systemjs-webpack-interop/auto-public-path/3";
 ```
 
 ### Older versions of webpack

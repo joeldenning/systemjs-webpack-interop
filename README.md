@@ -22,13 +22,16 @@ Webpack has several features that are geared towards better interop with SystemJ
 - https://webpack.js.org/configuration/output/#outputlibrarytarget (search for `libraryTarget: 'system'` on that page)
 - https://webpack.js.org/configuration/module/#ruleparser (search for `SystemJS` on that page)
 
+<<<<<<< HEAD
 Pending work that will make this even better:
 
 [This webpack PR](https://github.com/webpack/webpack/pull/9119) will make it so that you won't even have to create a `set-public-path` file. However, it is not merged yet.
 
+=======
+>>>>>>> Adding auto-public-path, which works in webpack@>=5.0.0-beta.15.
 ## Installation
 
-Note that systemjs-webpack-interop requires systemjs@>=6 and webpack@>=4.30.0
+Note that systemjs-webpack-interop requires systemjs@>=6.
 
 ```sh
 npm install --save systemjs-webpack-interop
@@ -37,11 +40,46 @@ npm install --save systemjs-webpack-interop
 yarn add systemjs-webpack-interop
 ```
 
-## API
+## Public Path
 
-systemjs-webpack-interop exports the following functions
+systemjs-webpack-interop will [dynamically set the webpack public path](https://webpack.js.org/guides/public-path/#on-the-fly) based on the URL that a SystemJS module was downloaded from.
 
-### setPublicPath
+### Newer versions of webpack
+
+If you're using at least webpack 5.0.0-beta.15, simply add the following **to the very top** of your [webpack entry file](https://webpack.js.org/configuration/entry-context/#entry):
+
+```js
+/* For a module at http://localhost:8080/dist/js/main.js,
+ * this will set the webpack public path to be
+ * http://localhost:8080/dist/js/
+ */
+import "systemjs-webpack-interop/src/auto-public-path";
+```
+
+If you need the webpack public path to "chop off" some of the directories in the current module's url, you can specify a "root directory level". Note that the root directory level is read from right-to-left, with `1` indicating "current directory" and `2` indicating "up one directory":
+
+```js
+/* For a module at http://localhost:8080/dist/js/main.js,
+ * this will set the webpack public path to be
+ * http://localhost:8080/js/
+ */
+import "systemjs-webpack-interop/src/auto-public-path/2";
+```
+
+```js
+/* For a module at http://localhost:8080/dist/js/main.js,
+ * this will set the webpack public path to be
+ * http://localhost:8080/
+ */
+import "systemjs-webpack-interop/src/auto-public-path/3";
+```
+
+### Older versions of webpack
+
+To set the webpack public path in older versions of webpack, you'll need to do two things:
+
+1. Create a file called `set-public-path.js`
+2. Import that file at the very top of your [webpack entry file](https://webpack.js.org/configuration/entry-context/#entry)
 
 ```js
 /* In your webpack entry file, add the following import as the very very first import. It is important that it is first.
@@ -54,22 +92,36 @@ import "./set-public-path.js";
 /* set-public-path.js */
 import { setPublicPath } from "systemjs-webpack-interop";
 
-/* Make sure your import map has foo in it. Example:
+/* Make sure your import map has the name of your module in it. Example:
 {
   "imports": {
-    "foo": "https://example.com/dist/js/foo.js"
+    "@org-name/my-module": "https://example.com/dist/js/main.js"
   }
 }
  */
 
 // __webpack_public_path__ will be set to https://example.com/dist/js/
 setPublicPath("foo");
+<<<<<<< HEAD
 
 // If the URL in the import map has multiple directories in the pathname, you can specify which directory
 // to use by passing in a second argument.
 // __webpack_public_path__ will be set to https://example.com/dist/
+=======
+```
+
+If you need the webpack public path to "chop off" some of the directories in the current module's url, you can specify a "root directory level". Note that the root directory level is read from right-to-left, with `1` indicating "current directory" and `2` indicating "up one directory":
+
+```js
+/* For a module at http://localhost:8080/dist/js/main.js,
+ * this will set the webpack public path to be
+ * http://localhost:8080/dist/
+ */
+>>>>>>> Adding auto-public-path, which works in webpack@>=5.0.0-beta.15.
 setPublicPath("foo", 2);
 ```
+
+### setPublicPath
 
 #### Arguments
 
@@ -84,6 +136,12 @@ setPublicPath("foo", 2);
 #### Return value
 
 `undefined`
+
+## Webpack config helpers
+
+systemjs-webpack-interop exports NodeJS functions for helping you set up and verify a webpack config so that it works well with SystemJS.
+
+Note that these functions only work if you're using webpack@>=4.30.0. Before that version of webpack, `output.libraryTarget` of `"system"` did not exist.
 
 ### modifyWebpackConfig
 

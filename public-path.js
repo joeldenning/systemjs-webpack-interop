@@ -41,7 +41,7 @@ exports.setPublicPath = function setPublicPath(
   __webpack_public_path__ = resolveDirectory(moduleUrl, rootDirectoryLevel);
 };
 
-export function resolveDirectory(urlString, rootDirectoryLevel) {
+function resolveDirectory(urlString, rootDirectoryLevel) {
   const url = new URL(urlString);
   const pathname = new URL(urlString).pathname;
   let numDirsProcessed = 0,
@@ -68,3 +68,5 @@ export function resolveDirectory(urlString, rootDirectoryLevel) {
 
   return url.href;
 }
+
+exports.resolveDirectory = resolveDirectory;

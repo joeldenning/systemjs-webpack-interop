@@ -1,6 +1,6 @@
-import { resolveDirectory } from "../public-path-system-resolve";
+const { resolveDirectory } = require("../public-path");
 
-export function autoPublicPath(rootDirLevel = 1) {
+exports.autoPublicPath = function autoPublicPath(rootDirLevel = 1) {
   if (typeof __webpack_public_path__ !== "undefined") {
     if (typeof __system_context__ === "undefined") {
       throw Error(
@@ -20,4 +20,4 @@ export function autoPublicPath(rootDirLevel = 1) {
       rootDirLevel
     );
   }
-}
+};

@@ -38,7 +38,7 @@ export function setPublicPath(systemjsModuleName, rootDirectoryLevel) {
   __webpack_public_path__ = resolveDirectory(moduleUrl, rootDirectoryLevel);
 }
 
-function resolveDirectory(urlString, rootDirectoryLevel) {
+export function resolveDirectory(urlString, rootDirectoryLevel) {
   const url = new URL(urlString);
   const pathname = new URL(urlString).pathname;
   let numDirsProcessed = 0,
@@ -57,7 +57,7 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
         ") is greater than the number of directories (" +
         numDirsProcessed +
         ") in the URL path " +
-        fullUrl
+        urlString
     );
   }
 

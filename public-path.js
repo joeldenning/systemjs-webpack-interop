@@ -17,7 +17,7 @@ exports.setPublicPath = function setPublicPath(
   if (
     typeof rootDirectoryLevel !== "number" ||
     rootDirectoryLevel <= 0 ||
-    !Number.isInteger(rootDirectoryLevel)
+    !isInteger(rootDirectoryLevel)
   ) {
     throw Error(
       "systemjs-webpack-interop: setPublicPath(systemjsModuleName, rootDirectoryLevel) must be called with a positive integer 'rootDirectoryLevel'"
@@ -70,3 +70,10 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
 }
 
 exports.resolveDirectory = resolveDirectory;
+
+// borrowed from https://github.com/parshap/js-is-integer/blob/master/index.js
+const isInteger =
+  Number.isInteger ||
+  function isInteger(val) {
+    return typeof val === "number" && isFinite(val) && Math.floor(val) === val;
+  };

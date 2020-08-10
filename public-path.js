@@ -42,8 +42,14 @@ exports.setPublicPath = function setPublicPath(
 };
 
 function resolveDirectory(urlString, rootDirectoryLevel) {
-  const url = new URL(urlString);
-  const pathname = new URL(urlString).pathname;
+  // Our friend IE11 doesn't support new URL()
+  // https://github.com/single-spa/single-spa/issues/612
+  // https://gist.github.com/jlong/2428561
+
+  const a = document.createElement("a");
+  a.href = urlString;
+
+  const pathname = a.pathname[0] === "/" ? a.pathname : "/" + a.pathname;
   let numDirsProcessed = 0,
     index = pathname.length;
   while (numDirsProcessed !== rootDirectoryLevel && index >= 0) {
@@ -64,9 +70,9 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
     );
   }
 
-  url.pathname = url.pathname.slice(0, index + 1);
+  const finalPath = pathname.slice(0, index + 1);
 
-  return url.href;
+  return a.protocol + "//" + a.host + finalPath;
 }
 
 exports.resolveDirectory = resolveDirectory;

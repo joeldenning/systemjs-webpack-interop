@@ -43,6 +43,7 @@ exports.setPublicPath = function setPublicPath(
 
 function resolveDirectory(urlString, rootDirectoryLevel) {
   // Our friend IE11 doesn't support new URL()
+  // https://github.com/single-spa/single-spa/issues/612
   // https://gist.github.com/jlong/2428561
 
   const a = document.createElement("a");

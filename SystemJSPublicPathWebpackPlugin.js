@@ -14,14 +14,15 @@ class SystemJSPublicPathWebpackPlugin {
   apply(compiler) {
     const additionalEntries = [];
 
+    const rootDirectoryLevel = this.options.rootDirectoryLevel || 1;
+
     if (isWebpack5) {
       additionalEntries.push(
-        `systemjs-webpack-interop/auto-public-path/${this.options
-          .rootDirectoryLevel || 1}`
+        `systemjs-webpack-interop/auto-public-path/${rootDirectoryLevel}`
       );
     } else {
       additionalEntries.push(
-        `systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=${this.options.systemjsModuleName}`
+        `systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=${this.options.systemjsModuleName}&rootDirectoryLevel=${rootDirectoryLevel}`
       );
     }
 

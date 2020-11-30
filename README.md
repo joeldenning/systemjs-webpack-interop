@@ -103,6 +103,12 @@ To set the webpack public path in older versions of webpack, add the following t
 import "systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=@org-name/project-name";
 ```
 
+To set the root directory level:
+
+```js
+import "systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=@org-name/project-name&rootDirectoryLevel=2";
+```
+
 ##### Old approach
 
 To set the webpack public path in older versions of webpack, you'll need to do two things:

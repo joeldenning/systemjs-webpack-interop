@@ -17,6 +17,7 @@ exports.setPublicPath = function setPublicPath(
   if (
     typeof rootDirectoryLevel !== "number" ||
     rootDirectoryLevel <= 0 ||
+    isNaN(rootDirectoryLevel) ||
     !isInteger(rootDirectoryLevel)
   ) {
     throw Error(

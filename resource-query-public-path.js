@@ -7,4 +7,4 @@ const queryObj = queryParts.reduce((result, queryPart) => {
   return result;
 }, {});
 
-setPublicPath(queryObj.systemjsModuleName);
+setPublicPath(queryObj.systemjsModuleName, Number(queryObj.rootDirectoryLevel));

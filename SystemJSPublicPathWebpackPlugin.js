@@ -32,6 +32,7 @@ class SystemJSPublicPathWebpackPlugin {
   }
 }
 
+// This function was copied from https://github.com/webpack/webpack-dev-server/blob/b0161e9852cdf41730e82aa43efe7e88f44a4f9d/lib/utils/DevServerPlugin.js#L72
 function prependEntry(originalEntry, additionalEntries) {
   if (typeof originalEntry === "function") {
     return () =>

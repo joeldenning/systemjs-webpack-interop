@@ -33,11 +33,37 @@ npm install --save systemjs-webpack-interop
 yarn add systemjs-webpack-interop
 ```
 
-## Public Path
+## Setting Public Path
 
 systemjs-webpack-interop will [dynamically set the webpack public path](https://webpack.js.org/guides/public-path/#on-the-fly) based on the URL that a SystemJS module was downloaded from.
 
-### Newer versions of webpack
+### As a Webpack Plugin
+
+You can set the public path by adding the SystemJSPublicPathWebpackPlugin.
+
+```js
+// webpack.config.js
+const SystemJSPublicPathWebpackPlugin = require("systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin");
+
+module.exports = {
+  plugins: [
+    new SystemJSPublicPathWebpackPlugin({
+      // optional: defaults to 1
+      // If you need the webpack public path to "chop off" some of the directories in the current module's url, you can specify a "root directory level". Note that the root directory level is read from right-to-left, with `1` indicating "current directory" and `2` indicating "up one directory":
+      rootDirectoryLevel: 1,
+
+      // ONLY NEEDED FOR WEBPACK 1-4. Not necessary for webpack@5
+      systemjsModuleName: "@org-name/project-name"
+    })
+  ]
+};
+```
+
+### With Code
+
+You can also set the public path with code inside of your webpack project.
+
+#### Newer versions of webpack
 
 If you're using at least webpack 5.0.0-beta.15, simply add the following **to the very top** of your [webpack entry file](https://webpack.js.org/configuration/entry-context/#entry):
 
@@ -67,7 +93,7 @@ import "systemjs-webpack-interop/auto-public-path/2";
 import "systemjs-webpack-interop/auto-public-path/3";
 ```
 
-### Older versions of webpack
+#### Older versions of webpack
 
 To set the webpack public path in older versions of webpack, you'll need to do two things:
 
@@ -106,6 +132,8 @@ If you need the webpack public path to "chop off" some of the directories in the
  */
 setPublicPath("foo", 2);
 ```
+
+## API
 
 ### setPublicPath
 

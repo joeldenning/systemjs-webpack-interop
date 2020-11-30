@@ -26,5 +26,8 @@
     "jest-cli": "^25.1.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1"
+  },
+  "peerDependencies": {
+    "webpack": "*"
   }
 }

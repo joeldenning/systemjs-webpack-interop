@@ -95,6 +95,16 @@ import "systemjs-webpack-interop/auto-public-path/3";
 
 #### Older versions of webpack
 
+##### Resource Query approach
+
+To set the webpack public path in older versions of webpack, add the following to the very top of your webpack entry file:
+
+```js
+import "systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=@org-name/project-name";
+```
+
+##### Old approach
+
 To set the webpack public path in older versions of webpack, you'll need to do two things:
 
 1. Create a file called `set-public-path.js`

@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const path = require("path");
 
 const isWebpack5 = webpack.version && webpack.version.startsWith("5.");
 
@@ -18,11 +19,14 @@ class SystemJSPublicPathWebpackPlugin {
 
     if (isWebpack5) {
       additionalEntries.push(
-        `systemjs-webpack-interop/auto-public-path/${rootDirectoryLevel}`
+        path.resolve(__dirname, `auto-public-path/${rootDirectoryLevel}`)
       );
     } else {
       additionalEntries.push(
-        `systemjs-webpack-interop/resource-query-public-path?systemjsModuleName=${this.options.systemjsModuleName}&rootDirectoryLevel=${rootDirectoryLevel}`
+        path.resolve(
+          __dirname,
+          `resource-query-public-path?systemjsModuleName=${this.options.systemjsModuleName}&rootDirectoryLevel=${rootDirectoryLevel}`
+        )
       );
     }
 

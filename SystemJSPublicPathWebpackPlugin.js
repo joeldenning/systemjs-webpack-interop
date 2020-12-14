@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const path = require("path");
+const path = require("path").posix;
 
 const isWebpack5 = webpack.version && webpack.version.startsWith("5.");
 

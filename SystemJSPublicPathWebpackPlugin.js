@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const path = require("path").posix;
+const path = require("path");
 
 const isWebpack5 = webpack.version && webpack.version.startsWith("5.");
 
@@ -25,7 +25,7 @@ class SystemJSPublicPathWebpackPlugin {
       additionalEntries.push(
         path.resolve(
           __dirname,
-          `resource-query-public-path?systemjsModuleName=${this.options.systemjsModuleName}&rootDirectoryLevel=${rootDirectoryLevel}`
+          `resource-query-public-path?systemjsModuleName=${encodeURIComponent(this.options.systemjsModuleName)}&rootDirectoryLevel=${rootDirectoryLevel}`
         )
       );
     }

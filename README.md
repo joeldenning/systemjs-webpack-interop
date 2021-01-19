@@ -206,7 +206,7 @@ A new, modified webpack config object.
 
 ```js
 // webpack.config.js
-const systemjsInterop = require("systemjs-webpack-interop");
+const systemjsInterop = require("systemjs-webpack-interop/webpack-config");
 
 // Pass in your webpack config, and systemjs-webpack-interop will make it
 // work better with SystemJS

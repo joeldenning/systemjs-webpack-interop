@@ -1,4 +1,4 @@
-const { resolveDirectory } = require("../public-path");
+const resolveDirectory = require("../public-path").resolveDirectory;
 
 exports.autoPublicPath = function autoPublicPath(rootDirLevel = 1) {
   if (typeof __webpack_public_path__ !== "undefined") {

@@ -1,3 +1,3 @@
-const { autoPublicPath } = require("./auto-public-path");
+const autoPublicPath = require("./auto-public-path").autoPublicPath;
 
 autoPublicPath(3);

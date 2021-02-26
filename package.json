@@ -16,7 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && pretty-quick --staged"
+      "pre-commit": "pnpm test && pretty-quick --staged"
     }
   },
   "devDependencies": {

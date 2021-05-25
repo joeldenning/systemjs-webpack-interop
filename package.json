@@ -1,6 +1,6 @@
 {
   "name": "systemjs-webpack-interop",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "helpers for getting webpack bundles to be loaded by systemjs",
   "main": "public-path.js",
   "types": "public-path.d.ts",

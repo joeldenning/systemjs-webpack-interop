@@ -25,7 +25,7 @@ exports.setPublicPath = function setPublicPath(
     );
   }
 
-  let moduleUrl;
+  var moduleUrl;
   try {
     moduleUrl = window.System.resolve(systemjsModuleName);
     if (!moduleUrl) {
@@ -47,14 +47,14 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
   // https://github.com/single-spa/single-spa/issues/612
   // https://gist.github.com/jlong/2428561
 
-  const a = document.createElement("a");
+  var a = document.createElement("a");
   a.href = urlString;
 
-  const pathname = a.pathname[0] === "/" ? a.pathname : "/" + a.pathname;
-  let numDirsProcessed = 0,
+  var pathname = a.pathname[0] === "/" ? a.pathname : "/" + a.pathname;
+  var numDirsProcessed = 0,
     index = pathname.length;
   while (numDirsProcessed !== rootDirectoryLevel && index >= 0) {
-    const char = pathname[--index];
+    var char = pathname[--index];
     if (char === "/") {
       numDirsProcessed++;
     }
@@ -71,7 +71,7 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
     );
   }
 
-  const finalPath = pathname.slice(0, index + 1);
+  var finalPath = pathname.slice(0, index + 1);
 
   return a.protocol + "//" + a.host + finalPath;
 }
@@ -79,7 +79,7 @@ function resolveDirectory(urlString, rootDirectoryLevel) {
 exports.resolveDirectory = resolveDirectory;
 
 // borrowed from https://github.com/parshap/js-is-integer/blob/master/index.js
-const isInteger =
+var isInteger =
   Number.isInteger ||
   function isInteger(val) {
     return typeof val === "number" && isFinite(val) && Math.floor(val) === val;

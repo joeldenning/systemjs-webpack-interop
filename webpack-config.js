@@ -1,3 +1,6 @@
+const webpack = require("webpack");
+const isWebpack5 = webpack.version && webpack.version.startsWith("5.");
+
 exports.modifyWebpackConfig = function(config = {}) {
   if (typeof config === "function") {
     return function() {
@@ -40,11 +43,12 @@ function checkConfig(config) {
   }
 
   if (
-    !config.module ||
-    !config.module.rules ||
-    !config.module.rules.find(
-      rule => rule.parser && rule.parser.system === false
-    )
+    !isWebpack5 &&
+    (!config.module ||
+      !config.module.rules ||
+      !config.module.rules.find(
+        rule => rule.parser && rule.parser.system === false
+      ))
   ) {
     throw Error(
       "Webpack configs for in-browser systemjs modules should have a webpack module rule that turns of System.import() as a webpack code split. See https://github.com/systemjs/systemjs#compatibility-with-webpack"
@@ -61,15 +65,18 @@ function makeModifications(config) {
   // Make sure that System.import() is not interpreted as a webpack code split.
   config.module = config.module || {};
   config.module.rules = config.module.rules || [];
-  const systemParserOff = config.module.rules.some(
-    rule => rule && rule.parser && rule.parser.system === false
-  );
-  if (!systemParserOff) {
-    config.module.rules.push({
-      parser: {
-        system: false
-      }
-    });
+
+  if (!isWebpack5) {
+    const systemParserOff = config.module.rules.some(
+      rule => rule && rule.parser && rule.parser.system === false
+    );
+    if (!systemParserOff) {
+      config.module.rules.push({
+        parser: {
+          system: false
+        }
+      });
+    }
   }
 
   return config;

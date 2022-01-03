@@ -3,6 +3,8 @@ const {
   checkWebpackConfig
 } = require("./webpack-config.js");
 
+jest.mock("webpack", () => ({ version: "4.0.0" }), { virtual: true });
+
 describe("webpack-config helpers", () => {
   it("modifies an empty webpack config to have the correct systemjs stuff", () => {
     const newConfig = modifyWebpackConfig({});

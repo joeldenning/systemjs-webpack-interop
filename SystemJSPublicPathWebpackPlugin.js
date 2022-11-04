@@ -3,7 +3,19 @@ const path = require("path");
 
 const isWebpack5 = webpack.version && webpack.version.startsWith("5.");
 
+const PUBLIC_PATH_ALGORITHM = {
+  AUTO: "auto",
+  RESOURCE_QUERY: "resource-query"
+};
+
 class SystemJSPublicPathWebpackPlugin {
+  /**
+   * makes a SystemJSPublicPathWebpackPlugin instance
+   * @param {Object} options - Options to use when constructing the SystemJSPublicPathWebpackPlugin instance.
+   * @param {string} options.publicPathAlgorithm - The algorithm used to determine the public path. Can be either 'auto' or 'resource-query'. Defaults to auto in webpack 5 and is always resource query for lower versions of webpack. You might only need to set this to 'resource-query' if you want to use webpack 5 and 'amd'.
+   * @param {string} options.rootDirectoryLevel - Used to instruct webpack public path to "chop off" some of the directories in the current module's url. Defaults to 1.
+   * @param {string} options.systemjsModuleName - The name of the project in the system js registry e.g @org-name/project-name. Only needed for webpack 1-4 or when using the resource-query public path algorithm.
+   */
   constructor(options) {
     this.options = options || {};
     if (!isWebpack5 && !this.options.systemjsModuleName) {
@@ -11,13 +23,17 @@ class SystemJSPublicPathWebpackPlugin {
         `SystemJSPublicPathWebpackPlugin: When using webpack@<5, you must provide 'systemjsModuleName' as an option.`
       );
     }
+    this.options.publicPathAlgorithm =
+      options.publicPathAlgorithm || PUBLIC_PATH_ALGORITHM.AUTO;
   }
   apply(compiler) {
     const additionalEntries = [];
 
     const rootDirectoryLevel = this.options.rootDirectoryLevel || 1;
+    const useAutoPublicPath =
+      this.options.publicPathAlgorithm === PUBLIC_PATH_ALGORITHM.AUTO;
 
-    if (isWebpack5) {
+    if (isWebpack5 && useAutoPublicPath) {
       additionalEntries.push(
         path.resolve(__dirname, `auto-public-path/${rootDirectoryLevel}`)
       );
@@ -25,7 +41,9 @@ class SystemJSPublicPathWebpackPlugin {
       additionalEntries.push(
         path.resolve(
           __dirname,
-          `resource-query-public-path?systemjsModuleName=${encodeURIComponent(this.options.systemjsModuleName)}&rootDirectoryLevel=${rootDirectoryLevel}`
+          `resource-query-public-path?systemjsModuleName=${encodeURIComponent(
+            this.options.systemjsModuleName
+          )}&rootDirectoryLevel=${rootDirectoryLevel}`
         )
       );
     }
